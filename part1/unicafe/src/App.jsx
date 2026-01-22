@@ -8,7 +8,6 @@ const App = () => {
 
 
   const handleGoodClick = () => {
-    console.log("Setting good!")
     setGood(good + 1)
   }
 
@@ -38,6 +37,19 @@ const Button = ({ onClick, text }) => {
   )
 }
 
+const StatisticLine = ({ text, value }) => {
+
+  if (text == "positive") {
+    return (
+      <>{text} {value} % </>
+    )
+  }
+  return (
+    <div>{text} {value}</div>
+  )
+
+}
+
 const Statistics = ({ good, neutral, bad }) => {
   const all = good + bad + neutral
 
@@ -49,18 +61,18 @@ const Statistics = ({ good, neutral, bad }) => {
     )
   }
   return (
-    <p>
-    good {good} <br />
-    neutral {neutral} <br />
-    bad {bad} <br />
-    all {all} <br />
-    average {all / 3} <br />
-    positive {good / all * 100} % 
-    </p>
+    <div>
+    <StatisticLine text="good" value={good}/>
+    <StatisticLine text="neutral" value={neutral}/>
+    <StatisticLine text="bad" value={bad}/>
+    <StatisticLine text="all" value={all}/>
+    <StatisticLine text="average" value={all / 3}/>
+    <StatisticLine text="positive" value={good / all * 100}/>
+    </div>
   )
-
-  
  
 }
+
+
 
 export default App
